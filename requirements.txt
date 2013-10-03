@@ -1,0 +1,2 @@
+PyGithub==1.19.0
+twitter==1.10.0
