@@ -1,10 +1,15 @@
 from github import Github
 from datetime import datetime, timedelta
+from twitter import Twitter, OAuth
 
 
 DEFAULT_PARAMETERS = {
     'GITHUB_TOKEN': None,                       # GitHub authirization token
     'GITHUB_ORG_NAME': None,                    # Name (login) of organization
+    'TW_CONSUMER_KEY': None,                    # Twitter application key
+    'TW_CONSUMER_SECRET': None,                 # Twitter application secret
+    'TW_OAUTH_TOKEN': None,                     # Twitter Oauth token
+    'TW_OAUTH_SECRET': None,                    # Twitter Oauth secret
     'STATISTIC_INTERVAL': timedelta(days=1),    # Statistics interval
     'MIN_COMMITS_COUNT': 1,                     # Minimum commits count required to send twit
     'TWIT_TEMPLATE': 'Today commits count by'   # Twit template
@@ -51,6 +56,12 @@ def render_template(template, data):
     return template.format(**data)
 
 
+def send_twit(oauth_token, oauth_secret, consumer_key, consumer_secret, twit_body):
+    """ Send twit """
+    twitter_client = Twitter(auth=OAuth(oauth_token, oauth_secret, consumer_key, consumer_secret))
+    return twitter_client.statuses.update(status=twit_body)
+
+
 if __name__ == '__main__':
 
     try:
@@ -77,5 +88,10 @@ if __name__ == '__main__':
     # Run!
     data = get_stats(PARAMETERS['GITHUB_TOKEN'], PARAMETERS['GITHUB_ORG_NAME'], 
                 PARAMETERS['STATISTIC_INTERVAL'])
-    twit_body = render_template(PARAMETERS['TWIT_TEMPLATE'], data)
-    print twit_body
+
+    # Check minimum comments restriction
+    if data['commits'] >= PARAMETERS['MIN_COMMITS_COUNT']:
+        twit_body = render_template(PARAMETERS['TWIT_TEMPLATE'], data)
+        send_twit(PARAMETERS['TW_OAUTH_TOKEN'], PARAMETERS['TW_OAUTH_SECRET'], 
+                  PARAMETERS['TW_CONSUMER_KEY'], PARAMETERS['TW_CONSUMER_SECRET'], 
+                  twit_body)
