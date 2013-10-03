@@ -8,13 +8,30 @@ Its conceived to run periodically (with crontab for example).
 INSTALLATION
 ============
 
-WIP
+Clone this repo:
+```
+git clone git@github.com:dizballanze/gh-stat-2-tw.git
+```
+
+Create virtualenv (not required):
+```
+cd gh-stat-2-tw
+virtualenv venv
+```
+
+Install requirements:
+```
+. venv/bin/activate
+pip install -r requirements.txt
+```
+
+Thats all!
 
 
-USAGE
-=====
+Configuration
+=============
 
-First of all, you need to specify parameters:
+First of all, you need to create `settings.py` and specify parameters:
 
 -  `TW_CONSUMER_KEY` - application consumer key. Use **[this](https://dev.twitter.com/apps)** to create application. Then change application type on application settings page to `Read and Write`.
 -  `TW_CONSUMER_SECRET` - application consumer key. Located on twitter application page.
@@ -30,6 +47,15 @@ First of all, you need to specify parameters:
     -  `lines_added` - total additions count,
     -  `lines_deleted` - total deletions count,
     -  `lines` - total lines.
+
+
+USAGE
+=====
+Run `post.py`:
+```
+python post.py
+```
+
 
 LICENSE
 =======
