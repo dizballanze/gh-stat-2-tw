@@ -14,8 +14,18 @@ WIP
 USAGE
 =====
 
-WIP
+First of all, you need to specify parameters:
 
+-  `GITHUB_TOKEN` - github authirization token. Read **[article](https://help.github.com/articles/creating-an-access-token-for-command-line-use#creating-a-token)** for instructions. **Required**.
+-  `GITHUB_ORG_NAME` - name (login) of organization. **Required**.
+-  `STATISTIC_INTERVAL` - `timedelta` instance. Specify interval in wich statistics will be calculated. Default - `1 day`.
+-  `MIN_COMMITS_COUNT` - minimum commits count required to send twit. Default - `1`.
+-  `TWIT_TEMPLATE` - Twit template in python `str.format` function format. You can use following variables:
+    -  `company` - GitHub company name,
+    -  `commits` - commits count,
+    -  `lines_added` - total additions count,
+    -  `lines_deleted` - total deletions count,
+    -  `lines` - total lines.
 
 LICENSE
 =======
