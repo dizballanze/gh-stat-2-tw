@@ -33,10 +33,10 @@ Configuration
 
 First of all, you need to create `settings.py` and specify parameters:
 
--  `TW_CONSUMER_KEY` - application consumer key. Use **[this](https://dev.twitter.com/apps)** to create application. Then change application type on application settings page to `Read and Write`.
--  `TW_CONSUMER_SECRET` - application consumer key. Located on twitter application page.
--  `TW_OAUTH_TOKEN` - oauth token for account that you want to use. Read **[this article](https://dev.twitter.com/docs/auth/tokens-devtwittercom)** for instructions.
--  `TW_OAUTH_SECRET` - oauth secret.
+-  `TW_CONSUMER_KEY` - application consumer key. Use **[this](https://dev.twitter.com/apps)** to create application. Then change application type on application settings page to `Read and Write`. **Required**.
+-  `TW_CONSUMER_SECRET` - application consumer key. Located on twitter application page. **Required**
+-  `TW_OAUTH_TOKEN` - oauth token for account that you want to use. Read **[this article](https://dev.twitter.com/docs/auth/tokens-devtwittercom)** for instructions. **Required**
+-  `TW_OAUTH_SECRET` - oauth secret. **Required**
 -  `GITHUB_TOKEN` - github authirization token. Read **[this article](https://help.github.com/articles/creating-an-access-token-for-command-line-use#creating-a-token)** for instructions. **Required**.
 -  `GITHUB_ORG_NAME` - name (login) of organization. **Required**.
 -  `STATISTIC_INTERVAL` - `timedelta` instance. Specify interval in wich statistics will be calculated. Default - `1 day`.
